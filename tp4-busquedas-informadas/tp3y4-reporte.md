@@ -89,22 +89,22 @@ Para garantizar que los resultados sean estadísticamente significativos y no de
 Los datos recopilados de las repeticiones de cada experimento fueron analizados calculando los promedios de rendimiento para cada configuración del entorno y su desviación estándar. Este enfoque estadístico permite obtener una visión general de cómo las variables del entorno afectan el comportamiento y la efectividad de los agentes.
 
 ### Gráfico 1: BFS
-![DATOS BFS](https://hackmd.io/_uploads/S1NzrPypC.png)
+![DATOS BFS]([https://hackmd.io/_uploads/S1NzrPypC.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20BFS.png))
 Resultados de 30 iteraciones del algoritmo BFS. Se puede observar la cantidad de estados explorados, el costo del primer escenario, el costo del segundo escenario y el tiempo empleado.
 ### Gráfico 2: DFS
-![DATOS DFS](https://hackmd.io/_uploads/B1mNHDJTA.png)
+![DATOS DFS]([https://hackmd.io/_uploads/B1mNHDJTA.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20DFS.png))
 Resultados de 30 iteraciones del algoritmo DFS. Se puede observar la cantidad de estados explorados, el costo del primer escenario, el costo del segundo escenario y el tiempo empleado.
 ### Gráfico 3: DLS
-![DATOS DLS](https://hackmd.io/_uploads/BywSBwyaA.png)
+![DATOS DLS]([https://hackmd.io/_uploads/BywSBwyaA.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20DLS.png))
 Resultados de 30 iteraciones del algoritmo DLS. Se puede observar la cantidad de estados explorados, el costo del primer escenario, el costo del segundo escenario y el tiempo empleado.
 ### Gráfico 4: UCS
-![DATOS UCS](https://hackmd.io/_uploads/ryVFSPk6R.png)
+![DATOS UCS]([https://hackmd.io/_uploads/ryVFSPk6R.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20UCS.png))
 Resultados de 30 iteraciones del algoritmo UCS. Se puede observar la cantidad de estados explorados, el costo del primer escenario, el costo del segundo escenario y el tiempo empleado.
 ### Gráfico 5: A*
-![DATOS A_STAR](https://hackmd.io/_uploads/B1c9Bvy6C.png)
+![DATOS A_STAR]([https://hackmd.io/_uploads/B1c9Bvy6C.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20A_STAR.png))
 Resultados de 30 iteraciones del algoritmo A*. Se puede observar la cantidad de estados explorados, el costo total y el tiempo empleado.
 ### Gráfico 6: Agente aleatorio
-![DATOS AGENTE ALEATORIO](https://hackmd.io/_uploads/r1TtUP1TA.png)
+![DATOS AGENTE ALEATORIO]([https://hackmd.io/_uploads/r1TtUP1TA.png](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp4-busquedas-informadas/images/DATOS%20AGENTE%20ALEATORIO.png))
 Resultados de 30 iteraciones del agente aleatorio. Se puede observar la cantidad de estados explorados, el costo del primer escenario, el costo del segundo escenario y el tiempo empleado.
 
 A simple vista, podemos determinar que el A* es el que más se destaca respecto a los demás. Además, en algunos casos como es en DLS no se encontró solución alguna. 
