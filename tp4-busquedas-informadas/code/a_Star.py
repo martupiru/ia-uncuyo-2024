@@ -23,8 +23,9 @@ def a_star(env):
     
     # Contadores
     total_cost = 0
+    move_count = 0
     
-    while not frontier.empty():
+    while not frontier.empty() and (move_count < 1000):
         _, current_node = frontier.get()
         
         if current_node.estado in explored and explored[current_node.estado] <= current_node.path_cost:
@@ -46,6 +47,7 @@ def a_star(env):
             child_cost = current_node.path_cost + 1
             child = n.Nodo(action, current_node, action_index, child_cost)
             frontier.put((child.path_cost + heuristic(child.estado, env.final_state), child))
+        move_count +=1
     
     end_time = time.time()
     final_time = end_time - start_time
@@ -72,9 +74,6 @@ def solution(child):
     moves.reverse()
     return path, moves
 
-# Ejemplo de uso
-env = e.Environment(100, 0.08, 9) # Tamaño reducido para pruebas
-result = a_star(env)
 
 def showMoves(moves, env):
     # Resetear el entorno para iniciar un nuevo episodio
@@ -88,20 +87,3 @@ def showMoves(moves, env):
     env.environment.render()
     time.sleep(0.5)
 
-path, moves, explored_amount, total_cost, final_time, found, nombre = result
-info = {
-    'algorithm_name': 'A*',
-    'posición inicial agente': env.initial_state,
-    'posición objetivo': env.final_state,
-    'env_n': 0,
-    'camino generado': path,
-    'movimientos': moves,
-    'states_n': explored_amount,
-    'cost_total': total_cost,
-    'time': final_time,
-    'solution_found': found
-}
-print(info)
-
-if found:
-    showMoves(moves, env)

@@ -3,7 +3,7 @@ from collections import deque
 import environment as e
 import time
 
-def depth_limited_search(env, limit):
+def dls(env, limit):
     nombre = "DLS"
     start_time = time.time()
     
@@ -23,8 +23,9 @@ def depth_limited_search(env, limit):
     # Contadores
     first_cost = 0  # escenario 1
     second_cost = 0  # escenario 2
-    
-    while frontier:
+    move_count = 0
+    explored_amount = 0
+    while frontier and (move_count < 1000):
         node, depth = frontier.pop()
         
         # Si el nodo ya está en el conjunto explorado, continuar con el siguiente nodo
@@ -39,12 +40,12 @@ def depth_limited_search(env, limit):
             continue
         
         actions, action_number = node.possible_actions(env)
-        first_cost += len(actions)  # escenario 1
+        first_cost += 1  # escenario 1
         
         for action in actions:
             action_cost = action_number.popleft()
             child = n.Nodo(action, node, action_cost)
-            second_cost += action_cost + 1  # escenario 2
+            second_cost += action_cost + 1  
             if child.estado not in explored and child.estado not in (nodo.estado for nodo, _ in frontier):
                 if child.goal_test(env.final_state):
                     explored_amount = len(explored)
@@ -55,6 +56,7 @@ def depth_limited_search(env, limit):
                 
                 # Añadir el nodo hijo a la frontera con profundidad incrementada
                 frontier.append((child, depth + 1))
+        move_count+=1
         
     end_time = time.time()
     final_time = end_time - start_time
@@ -78,8 +80,8 @@ def solution(child):
     moves.reverse()
     return path, moves
 
-env = e.Environment(100, 0.08, 9)  # Tamaño, tasa de agujeros, semilla
-result = depth_limited_search(env, limit=10)
+#env = e.Environment(100, 0.08, 9)  # Tamaño, tasa de agujeros, semilla
+#result = dls(env, limit=10)
 
 def showMoves(moves, env):
     # Resetear el entorno para iniciar un nuevo episodio
@@ -93,7 +95,7 @@ def showMoves(moves, env):
     env.environment.render()
     time.sleep(0.5)
 
-path, moves, explored_amount, first_cost, second_cost, final_time, found, nombre = result
+"""path, moves, explored_amount, first_cost, second_cost, final_time, found, nombre = result
 info = {
     'algorithm_name': nombre,
     'posición inicial agente': env.initial_state,
@@ -110,4 +112,4 @@ info = {
 print(info)
 
 if found:
-    showMoves(moves, env)
+    showMoves(moves, env)"""

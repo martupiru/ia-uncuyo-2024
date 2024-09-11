@@ -22,8 +22,10 @@ def bfs(env):
     # Contadores
     first_cost = 0 #escenario 1
     second_cost = 0 #escenario 2
+    move_count = 0
+    explored_amount = 0
     
-    while frontier:
+    while frontier and (move_count<1000):
         # Extraer el nodo de la frontera
         node = frontier.popleft()
         
@@ -31,7 +33,7 @@ def bfs(env):
         explored.add(node.estado)
         
         actions, action_number = node.possible_actions(env)
-        first_cost += len(actions) #escenario 1
+        first_cost += 1 #escenario 1
         
         for action in actions:
             action_cost = action_number.popleft()
@@ -46,10 +48,12 @@ def bfs(env):
                     return path, moves, explored_amount, first_cost, second_cost, final_time, True, nombre
                 
                 frontier.append(child)
+        move_count+=1
 
     end_time = time.time()
     final_time = end_time-start_time                     
-    path, moves = solution(node)                  
+    path, moves = solution(node) 
+ 
     return path, moves, explored_amount, first_cost, second_cost, final_time, False, nombre
 
 def solution(child):
@@ -72,8 +76,8 @@ def solution(child):
     moves.reverse()
     return path, moves
 
-env = e.Environment(100, 0.08,9) #size, porcent, seed
-result = bfs(env)
+#env = e.Environment(100, 0.08,9) #size, porcent, seed
+#result = bfs(env)
 
 def showMoves(moves, env):
     """
@@ -90,7 +94,7 @@ def showMoves(moves, env):
     env.environment.render()
     time.sleep(0.5)
 
-path, moves, explored_amount, first_cost, second_cost, final_time, found, nombre = result
+"""""path, moves, explored_amount, first_cost, second_cost, final_time, found, nombre = result
 info = {
         'algorithm_name': nombre,
         'posición inicial agente': env.initial_state,
@@ -104,7 +108,7 @@ info = {
         'time': final_time,
         'solution_found': found 
     }
-print(info)
+print(info)"""
 
-if found:
-    showMoves(moves, env)
+""""if found:
+    showMoves(moves, env)"""
