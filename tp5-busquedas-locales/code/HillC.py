@@ -18,6 +18,9 @@ def hill_climbing(n, max_evaluations):
     evaluaciones = 0
     h_actual = H(estado_actual)
     
+    # Lista para guardar los valores de H en cada iteración -funcion H()
+    historial_h = [h_actual] 
+    
     while evaluaciones < max_evaluations and h_actual > 0:
         vecinos = generar_vecinos(estado_actual)
         vecinos_h = [(vecino, H(vecino)) for vecino in vecinos]
@@ -26,8 +29,12 @@ def hill_climbing(n, max_evaluations):
         
         if mejor_h >= h_actual:
             break  # No hay mejora
+        
         estado_actual = mejor_vecino
         h_actual = mejor_h
         evaluaciones += 1
+        
+        # Guardar el valor de H en cada iteración -funcion H()
+        historial_h.append(h_actual)
     
-    return estado_actual, h_actual, evaluaciones
+    return estado_actual, h_actual, evaluaciones, historial_h

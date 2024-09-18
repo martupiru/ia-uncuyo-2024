@@ -21,6 +21,9 @@ def simulated_annealing(n, max_evaluations, temp_inicial=100, alpha=0.99):
     temperatura = temp_inicial
     evaluaciones = 0
     
+    # Lista para guardar los valores de H en cada iteración -funcion H()
+    historial_h = [h_actual]
+    
     while evaluaciones < max_evaluations and h_mejor > 0 and temperatura > 0.1:
         vecino = generar_vecino_aleatorio(estado_actual)
         h_vecino = H(vecino)
@@ -35,5 +38,8 @@ def simulated_annealing(n, max_evaluations, temp_inicial=100, alpha=0.99):
         
         temperatura *= alpha
         evaluaciones += 1
+        
+        # Guardar el valor de H en cada iteración -funcion H()
+        historial_h.append(h_mejor)
     
-    return mejor_estado, h_mejor, evaluaciones
+    return mejor_estado, h_mejor, evaluaciones, historial_h

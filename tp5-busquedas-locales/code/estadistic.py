@@ -38,25 +38,45 @@ def calcular_estadisticas(df):
 
 
 def generar_boxplots(df, n_values):
+    # Aplicar un tema de Seaborn
+    sns.set_theme(style="whitegrid")
+    
+    # Definir paleta de colores
+    colores = sns.color_palette("Set2")
+    
     for n in n_values:
         subset = df[df['N'] == n]
         
         # Boxplot de Tiempos de Ejecución
         plt.figure(figsize=(10, 6))
-        sns.boxplot(x='Algoritmo', y='Tiempo', data=subset)
-        plt.title(f'Distribución de Tiempos de Ejecución para N={n}')
-        plt.ylabel('Tiempo (segundos)')
-        plt.xlabel('Algoritmo')
-        plt.savefig(f'boxplot_tiempo_N{n}.png')
+        sns.boxplot(x='Algoritmo', y='Tiempo', hue='Algoritmo', data=subset, palette=colores, dodge=False)
+        plt.title(f'Distribución de Tiempos de Ejecución para N={n}', fontsize=16, fontweight='bold')
+        plt.ylabel('Tiempo (segundos)', fontsize=12)
+        plt.xlabel('Algoritmo', fontsize=12)
+        plt.xticks(fontsize=10)
+        plt.yticks(fontsize=10)
+        plt.savefig(f'boxplot_tiempo_N{n}.png', dpi=300, bbox_inches='tight')  # Mayor resolución
         plt.close()
         
         # Boxplot de Estados Evaluados
         plt.figure(figsize=(10, 6))
-        sns.boxplot(x='Algoritmo', y='Estados_Evaluados', data=subset)
-        plt.title(f'Distribución de Estados Evaluados para N={n}')
-        plt.ylabel('Estados Evaluados')
-        plt.xlabel('Algoritmo')
-        plt.savefig(f'boxplot_estados_N{n}.png')
+        sns.boxplot(x='Algoritmo', y='Estados_Evaluados', hue='Algoritmo', data=subset, palette=colores, dodge=False)
+        plt.title(f'Distribución de Estados Evaluados para N={n}', fontsize=16, fontweight='bold')
+        plt.ylabel('Estados Evaluados', fontsize=12)
+        plt.xlabel('Algoritmo', fontsize=12)
+        plt.xticks(fontsize=10)
+        plt.yticks(fontsize=10)
+        plt.savefig(f'boxplot_estados_N{n}.png', dpi=300, bbox_inches='tight')
         plt.close()
     
     print("Boxplots generados y guardados como imágenes.")
+
+def graficar_historial_h(historial_h, algoritmo, n):
+    plt.figure(figsize=(10, 6))
+    plt.plot(historial_h, marker='o')
+    plt.title(f'Variación de H() en {algoritmo} para N={n}', fontsize=16)
+    plt.xlabel('Iteraciones', fontsize=12)
+    plt.ylabel('H (Número de conflictos)', fontsize=12)
+    plt.grid(True)
+    plt.show()
+
