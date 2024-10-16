@@ -7,7 +7,7 @@ title: tp7-eda
 ## A partir del archivo arbolado-mendoza-dataset-train.csv responder las siguientes preguntas:
 **A) Cual es la distribución de las clase inclinacion_peligrosa?** 
 La distribución de las clases inclinacion_peligrosa es sesgada a derecha con respecto a la grafica.Por lo que hay menos árboles con inclinación peligrosa.
-
+![Distribución inclinación peligrosa](./tp7-intro-ml/images/inclinacion_peligrosa_seccion.png)
 **B) ¿Se puede considerar alguna sección más peligrosa que otra?**
 Si. La seccion 4 es más peligrosa que el resto
 
@@ -24,6 +24,7 @@ Si. La seccion 4 es más peligrosa que el resto
 |7        | 88       |
 |8        | 27       |
 
+![Inclinación peligrosa por seccion](./tp7-intro-ml/images/inclinacion_peligrosa_seccion.png)
 **C) ¿Se puede considerar alguna especie más peligrosa que otra?**
 Si, podemos considerar que la especie morera es más peligrosa que las demás.
 ### Datos de árboles peligrosos por especie:
@@ -55,12 +56,18 @@ Si, podemos considerar que la especie morera es más peligrosa que las demás.
 |Ligustro        | 2       |
 |Eucalyptus         | 1       |
 
+![Inclinación peligrosa por especie](./tp7-intro-ml/images/inclinacion_peligrosa_especie.png)
+
 **3)B) Generar un histograma de frecuencia para la variable circ_tronco_cm. Probar con diferentes  números de bins.**
 
 Los bins utilizados fueron 10 y 20.
--imagen-
+![Histograma del diámetro del tronco](./tp7-intro-ml/images/histograma_ctronco.png)
+
+
 **C) Repetir el punto b) pero separando por la clase de la variable inclinación_peligrosa** 
--imagen-
+
+![Histograma del diámetro del tronco separado por inclinación peligrosa](./tp7-intro-ml/images/histograma_ctronco_inclinacion_peligrosa.png)
+
 **D)Crear una nueva variable categórica de nombre circ_tronco_cm_cat a partir circ_tronco_cm, en donde puedan asignarse solo  4 posibles valores [ muy alto, alto, medio, bajo ]. Utilizar la información del punto b. para seleccionar los puntos de corte para cada categoría. Guardar el nuevo dataframe bajo el nombre de arbolado-mendoza-dataset-circ_tronco_cm-train.csv**
 
 Los puntos de corte se basarán en los valores que identificamos en los histogramas anteriores. 
