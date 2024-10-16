@@ -1,0 +1,170 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+# Clasificador Aleatorio para Árboles Peligrosos en Mendoza
+
+En este análisis, se implementará un clasificador aleatorio para predecir la inclinación peligrosa de los árboles. También se calculará la matriz de confusión para evaluar el rendimiento del clasificador.
+
+```{r}
+# Instalar los paquetes necesarios
+if(!require(dplyr)) install.packages("dplyr")
+
+```
+```{r}
+# Cargar las librerías necesarias
+library(dplyr)
+#------------------------PUNTO 4--------------------------------
+# Función para generar una columna prediction_prob
+generate_prediction_prob <- function(df) {
+  df$prediction_prob <- runif(nrow(df), min = 0, max = 1)  # Genera valores aleatorios entre 0 y 1
+  return(df)
+}
+
+```
+```{r}
+# Función random_classifier
+random_classifier <- function(df) {
+  df <- generate_prediction_prob(df)  # Generar columna prediction_prob
+  df <- df %>% mutate(prediction_class = ifelse(prediction_prob > 0.5, 1, 0))  # Clasificar en base a probabilidad
+  return(df)
+}
+
+```
+```{r}
+# Cargar el archivo arbolado-mendoza-dataset-validation.csv
+df_validation <- read.csv("C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-intro-ml/data/arbolado-mendoza-dataset-validation.csv")
+
+# Aplicar el clasificador aleatorio
+df_validation <- random_classifier(df_validation)
+
+# Ver las primeras filas del dataframe
+head(df_validation)
+
+```
+```{r}
+# Convertir inclinacion_peligrosa a 0 y 1
+df_validation$inclinacion_peligrosa <- ifelse(df_validation$inclinacion_peligrosa == 1, 1, 0)
+
+# Calcular los valores de la matriz de confusión
+true_positive <- sum(df_validation$inclinacion_peligrosa == 1 & df_validation$prediction_class == 1)
+true_negative <- sum(df_validation$inclinacion_peligrosa == 0 & df_validation$prediction_class == 0)
+false_positive <- sum(df_validation$inclinacion_peligrosa == 0 & df_validation$prediction_class == 1)
+false_negative <- sum(df_validation$inclinacion_peligrosa == 1 & df_validation$prediction_class == 0)
+
+# Mostrar la matriz de confusión
+confusion_matrix <- data.frame(
+  "True Positive" = true_positive,
+  "True Negative" = true_negative,
+  "False Positive" = false_positive,
+  "False Negative" = false_negative
+)
+
+confusion_matrix
+
+```
+```{r}
+#------------------------PUNTO 5--------------------------------
+
+# Función biggerclass_classifier
+biggerclass_classifier <- function(df) {
+  # Identificar la clase mayoritaria
+  class_majority <- ifelse(mean(df$inclinacion_peligrosa) > 0.5, 1, 0)
+  
+  # Asignar la clase mayoritaria en la nueva columna prediction_class
+  df <- df %>% mutate(prediction_class = class_majority)
+  
+  return(df)
+}
+
+```
+```{r}
+# Aplicar el clasificador por clase mayoritaria
+df_validation_biggerclass <- biggerclass_classifier(df_validation)
+
+# Calcular la matriz de confusión para biggerclass_classifier
+true_positive_bigger <- sum(df_validation_biggerclass$inclinacion_peligrosa == 1 & df_validation_biggerclass$prediction_class == 1)
+true_negative_bigger <- sum(df_validation_biggerclass$inclinacion_peligrosa == 0 & df_validation_biggerclass$prediction_class == 0)
+false_positive_bigger <- sum(df_validation_biggerclass$inclinacion_peligrosa == 0 & df_validation_biggerclass$prediction_class == 1)
+false_negative_bigger <- sum(df_validation_biggerclass$inclinacion_peligrosa == 1 & df_validation_biggerclass$prediction_class == 0)
+
+# Mostrar la matriz de confusión
+confusion_matrix_biggerclass <- data.frame(
+  "True Positive" = true_positive_bigger,
+  "True Negative" = true_negative_bigger,
+  "False Positive" = false_positive_bigger,
+  "False Negative" = false_negative_bigger
+)
+
+confusion_matrix_biggerclass
+
+```
+```{r}
+#------------------------PUNTO 6--------------------------------
+# Funciones para calcular métricas
+calculate_accuracy <- function(tp, tn, fp, fn) {
+  return((tp + tn) / (tp + tn + fp + fn))
+}
+
+calculate_precision <- function(tp, fp) {
+  return(tp / (tp + fp))
+}
+
+calculate_sensitivity <- function(tp, fn) {
+  return(tp / (tp + fn))
+}
+
+calculate_specificity <- function(tn, fp) {
+  return(tn / (tn + fp))
+}
+
+```
+```{r}
+accuracy_random <- calculate_accuracy(true_positive, true_negative, false_positive, false_negative)
+precision_random <- calculate_precision(true_positive, false_positive)
+sensitivity_random <- calculate_sensitivity(true_positive, false_negative)
+specificity_random <- calculate_specificity(true_negative, false_positive)
+
+# Mostrar las métricas del clasificador aleatorio
+data.frame(
+  "Accuracy" = accuracy_random,
+  "Precision" = precision_random,
+  "Sensitivity" = sensitivity_random,
+  "Specificity" = specificity_random
+)
+
+```
+```{r}
+accuracy_biggerclass <- calculate_accuracy(true_positive_bigger, true_negative_bigger, false_positive_bigger, false_negative_bigger)
+precision_biggerclass <- calculate_precision(true_positive_bigger, false_positive_bigger)
+sensitivity_biggerclass <- calculate_sensitivity(true_positive_bigger, false_negative_bigger)
+specificity_biggerclass <- calculate_specificity(true_negative_bigger, false_positive_bigger)
+
+# Mostrar las métricas del clasificador por clase mayoritaria
+data.frame(
+  "Accuracy" = accuracy_biggerclass,
+  "Precision" = precision_biggerclass,
+  "Sensitivity" = sensitivity_biggerclass,
+  "Specificity" = specificity_biggerclass
+)
+
+```
+
+
+
+
+
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
