@@ -29,6 +29,7 @@ def simulated_annealing(n, max_evaluations, temp_inicial=100, alpha=0.99):
         h_vecino = H(vecino)
         delta_H = h_vecino - h_actual
         
+        #funcion H exponencial
         if delta_H < 0 or random.uniform(0, 1) < math.exp(-delta_H / temperatura):
             estado_actual = vecino
             h_actual = h_vecino
