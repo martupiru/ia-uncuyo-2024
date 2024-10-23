@@ -1765,17 +1765,29 @@ predecir la inclinación peligrosa de los árboles. También se calculará
 la matriz de confusión para evaluar el rendimiento del clasificador.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbnN0YWxhciBsb3MgcGFxdWV0ZXMgbmVjZXNhcmlvc1xuaWYoIXJlcXVpcmUoZHBseXIpKSBpbnN0YWxsLnBhY2thZ2VzKFwiZHBseXJcIilcblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBJbnN0YWxhciBsb3MgcGFxdWV0ZXMgbmVjZXNhcmlvc1xuaWYoIXJlcXVpcmUoZHBseXIpKSBpbnN0YWxsLnBhY2thZ2VzKFwiZHBseXJcIilcbmBgYCJ9 -->
 <pre class="r"><code># Instalar los paquetes necesarios
-if(!require(dplyr)) install.packages(&quot;dplyr&quot;)
-</code></pre>
+if(!require(dplyr)) install.packages(&quot;dplyr&quot;)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiTG9hZGluZyByZXF1aXJlZCBwYWNrYWdlOiBkcGx5clxuXG5BdHRhY2hpbmcgcGFja2FnZTog4oCYZHBseXLigJlcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOnN0YXRz4oCZOlxuXG4gICAgZmlsdGVyLCBsYWdcblxuVGhlIGZvbGxvd2luZyBvYmplY3RzIGFyZSBtYXNrZWQgZnJvbSDigJhwYWNrYWdlOmJhc2XigJk6XG5cbiAgICBpbnRlcnNlY3QsIHNldGRpZmYsIHNldGVxdWFsLCB1bmlvblxuIn0= -->
+<pre><code>Loading required package: dplyr
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYXJnYXIgbGFzIGxpYnJlcsOtYXMgbmVjZXNhcmlhc1xubGlicmFyeShkcGx5cilcblxuIyBGdW5jacOzbiBwYXJhIGdlbmVyYXIgdW5hIGNvbHVtbmEgcHJlZGljdGlvbl9wcm9iXG5nZW5lcmF0ZV9wcmVkaWN0aW9uX3Byb2IgPC0gZnVuY3Rpb24oZGYpIHtcbiAgZGYkcHJlZGljdGlvbl9wcm9iIDwtIHJ1bmlmKG5yb3coZGYpLCBtaW4gPSAwLCBtYXggPSAxKSAgIyBHZW5lcmEgdmFsb3JlcyBhbGVhdG9yaW9zIGVudHJlIDAgeSAxXG4gIHJldHVybihkZilcbn1cblxuYGBgIn0= -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYXJnYXIgbGFzIGxpYnJlcsOtYXMgbmVjZXNhcmlhc1xubGlicmFyeShkcGx5cilcbiMtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1QVU5UTyA0LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS1cbiMgRnVuY2nDs24gcGFyYSBnZW5lcmFyIHVuYSBjb2x1bW5hIHByZWRpY3Rpb25fcHJvYlxuZ2VuZXJhdGVfcHJlZGljdGlvbl9wcm9iIDwtIGZ1bmN0aW9uKGRmKSB7XG4gIGRmJHByZWRpY3Rpb25fcHJvYiA8LSBydW5pZihucm93KGRmKSwgbWluID0gMCwgbWF4ID0gMSkgICMgR2VuZXJhIHZhbG9yZXMgYWxlYXRvcmlvcyBlbnRyZSAwIHkgMVxuICByZXR1cm4oZGYpXG59XG5cbmBgYCJ9 -->
 <pre class="r"><code># Cargar las librerías necesarias
 library(dplyr)
-
+#------------------------PUNTO 4--------------------------------
 # Función para generar una columna prediction_prob
 generate_prediction_prob &lt;- function(df) {
   df$prediction_prob &lt;- runif(nrow(df), min = 0, max = 1)  # Genera valores aleatorios entre 0 y 1
@@ -1796,30 +1808,18 @@ random_classifier &lt;- function(df) {
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYXJnYXIgZWwgYXJjaGl2byBhcmJvbGFkby1tZW5kb3phLWRhdGFzZXQtdmFsaWRhdGlvbi5jc3ZcbmRmX3ZhbGlkYXRpb24gPC0gcmVhZC5jc3YoXCJDOi9Vc2Vycy9Vc3VhcmlvL0RvY3VtZW50cy9NQVJUSS9HaXRodWIvaWEtdW5jdXlvLTIwMjQvdHA3LWludHJvLW1sL2RhdGEvYXJib2xhZG8tbWVuZG96YS1kYXRhc2V0LXZhbGlkYXRpb24uY3N2XCIpXG5cbiMgQXBsaWNhciBlbCBjbGFzaWZpY2Fkb3IgYWxlYXRvcmlvXG5kZl92YWxpZGF0aW9uIDwtIHJhbmRvbV9jbGFzc2lmaWVyKGRmX3ZhbGlkYXRpb24pXG5cbiMgVmVyIGxhcyBwcmltZXJhcyBmaWxhcyBkZWwgZGF0YWZyYW1lXG5oZWFkKGRmX3ZhbGlkYXRpb24pXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDYXJnYXIgZWwgYXJjaGl2byBhcmJvbGFkby1tZW5kb3phLWRhdGFzZXQtdmFsaWRhdGlvbi5jc3ZcbmRmX3ZhbGlkYXRpb24gPC0gcmVhZC5jc3YoXCJDOi9Vc2Vycy9Vc3VhcmlvL0RvY3VtZW50cy9NQVJUSS9HaXRodWIvaWEtdW5jdXlvLTIwMjQvdHA3LWludHJvLW1sL2RhdGEvYXJib2xhZG8tbWVuZG96YS1kYXRhc2V0LXZhbGlkYXRpb24uY3N2XCIpXG5gYGAifQ== -->
 <pre class="r"><code># Cargar el archivo arbolado-mendoza-dataset-validation.csv
-df_validation &lt;- read.csv(&quot;C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-intro-ml/data/arbolado-mendoza-dataset-validation.csv&quot;)
-
-# Aplicar el clasificador aleatorio
-df_validation &lt;- random_classifier(df_validation)
-
-# Ver las primeras filas del dataframe
-head(df_validation)</code></pre>
+df_validation &lt;- read.csv(&quot;C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-intro-ml/data/arbolado-mendoza-dataset-validation.csv&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6NiwibmNvbCI6MTQsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOlsiZGYgWzYgw5cgMTRdIl19fSwicmRmIjoiSDRzSUFBQUFBQUFBQnFWVlgyZ1VSeGlmM0YwdTVEQ1hsQ1JWRW9SOUVGRWhkN3Y1eDNsZ2NwZW84Y0ZvRWxPd1Zyak03VTZTcVhzemw5bmR0Q0x4ejV1b1VHaWhLdWl6Ukh3SStxQnZub0lRK2lBSUxTMW9wYlNGdHJTRUZxb0lRdlRiMjUyN3ZjTmdvUXZEYjc3ZjkyZSsrYjZaMmFtOVIvdGlSMk1Jb1RDS2hNTW8zQWhUMVBqUjlQNmVGRUtSRUFnTktJS2FYZndjak5waEVvZlJBaU9LMElmZkkzVGxGRUpEOHdndGZZUFFpV1dFdWdxZ2F5dnJQY2ZvT0JkRVlGK0s3eGZFWWx3aGp1QkZ3dDlwMCtiYjRBSVJWTWVzWWpWaDJsV3BQbEx0cW0zcVlGSWRTUGFxbXFab2ZlbUJsT1I3KzVKYXI4dXJpdGFmMWdZbHI2bEpOZVhiYTJsdElNakxPR3BhcThaSkpVRWw3ZnUxUVB5S2ZUbE9iVjRmakJPRGNtVkh2OUtqcEpTQ2JlMThueUtlTlczZ2gvNlhlY2U0YzFMSjQwOUJvNEZIcjZmem1obk5aTSs2YlVlWmd6N21TeDUrakR5YzgrVnRTSDdCTFRXNXFWVDdVaWRHeHdSbUJ2a1BVdVBvUE5XNVRLbzBPZkRqVlg1N3FUUTV1UHo3MnRBUGdLSGtyVi8yQWI2NmVtRG1NZWp2ci9SMGJnWDUyZDFmS2EzNFpZcVhWck1kU2luRHorL1lkdkFCNEZkZDMwNWZLMlVXSmxKYkxsNHVaY1ErNDhuclR3QlBQMDk4clZkUE14eDFEeU51TWpCQ1BnWTNHNS9BWXNFaHlpaGh0c0NtN01ZVXNhaEJtRTZ4cVJ6aXdwWjcyalRxWUdGajVUQ3hLbHhyMFBpSUkzeTZaUVFMQVMwZHBZdHVHVGF3OVhlWjNUMnlaKzNoOW5QWnZWKzBxTmYvMlp6VmZwdSs4MlY2VjNia05Gb2MvUG5QN0VoOEpkRjlmRW5LZ1YxdTlKWGpEbi9YUFhZT0pzTi8vZkh2c1JuQW54WWVxZEQ5NFhzWHhzNjQvT3JTaXhzdVByMzU4bG1wNmllRERQOWRpeHQvTlk5TEk0Tzdidm1sanZ0a2lCcnlTQkdyU0hRcUM5anVtRFl0NEZ5QkczUVdIZ2lkY2laUEZEWnRwL3JZNkZUb09WdHdwdk9jWHBBMWhlTlpJTUQ2R3ArT21Kek4rZk93aVcyNXRrWDB3QUp4eGd0NVFYSzE3Q1lzQ0s3ak9pblRUY3JLMmVXS3hLUnpnbHN5czlhaWdGdWkyMldkNEhuNWVnUm8zY1NXVlZlblpzRS9TOGhhdVEwTm5mV3FHYTB2cU85ZExxZ2tZd2EyY1dKV2dEOUk2M1V1VGJ6b3JndE9vWGEvcFVIbkJsRkh0RHJNemNUbzBlY2Rkc0w5WDlTb3cwV29KcXlKdkh2VjRDY3M3NWljeDcwc1FtOVEzVitEc0RuS0trK0RpZk5FWHJhd1FSWmxONkFlNVhJa2lvSXkyYklZc0ZiQzVuYmxmc1owYmtxbXZITzAvaGJlQVVmcyt3WUFBQT09In0= -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["id"],"name":[1],"type":["int"],"align":["right"]},{"label":["especie"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ultima_modificacion"],"name":[3],"type":["chr"],"align":["left"]},{"label":["altura"],"name":[4],"type":["chr"],"align":["left"]},{"label":["circ_tronco_cm"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["diametro_tronco"],"name":[6],"type":["chr"],"align":["left"]},{"label":["long"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["lat"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["seccion"],"name":[9],"type":["int"],"align":["right"]},{"label":["nombre_seccion"],"name":[10],"type":["chr"],"align":["left"]},{"label":["area_seccion"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["inclinacion_peligrosa"],"name":[12],"type":["int"],"align":["right"]},{"label":["prediction_prob"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["prediction_class"],"name":[14],"type":["dbl"],"align":["right"]}],"data":[{"1":"5847","2":"Morera","3":"06/05/2011 13:58","4":"Medio (4 - 8 mts)","5":"35","6":"Mediano","7":"-68.84165","8":"-32.87930","9":"1","10":"Parque Central","11":"1655358","12":"0","13":"0.32979000","14":"0","_rn_":"1"},{"1":"39035","2":"Fresno europeo","3":"23/12/2010 14:16","4":"Medio (4 - 8 mts)","5":"57","6":"Mediano","7":"-68.85412","8":"-32.87134","9":"6","10":"Residencial Norte","11":"2694682","12":"0","13":"0.90355890","14":"1","_rn_":"2"},{"1":"15976","2":"Morera","3":"10/08/2011 11:15","4":"Alto (> 8 mts)","5":"150","6":"Grande","7":"-68.84388","8":"-32.87168","9":"4","10":"Cuarta Oeste","11":"1173333","12":"0","13":"0.51388797","14":"1","_rn_":"3"},{"1":"32202","2":"Fresno americano","3":"10/05/2011 10:18","4":"Medio (4 - 8 mts)","5":"100","6":"Grande","7":"-68.85892","8":"-32.88526","9":"5","10":"Residencial Sur","11":"2423809","12":"0","13":"0.09585997","14":"0","_rn_":"4"},{"1":"27561","2":"Pltano","3":"28/10/2011 11:41","4":"Alto (> 8 mts)","5":"190","6":"Grande","7":"-68.83982","8":"-32.89274","9":"2","10":"Barrio Civico","11":"2366816","12":"0","13":"0.19134398","14":"0","_rn_":"5"},{"1":"6765","2":"Fresno europeo","3":"23/05/2011 11:15","4":"Muy bajo (1 - 2 mts)","5":"10","6":"Chico","7":"-68.85722","8":"-32.89450","9":"5","10":"Residencial Sur","11":"2423809","12":"0","13":"0.43230983","14":"0","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10],"total":[14]},"rows":{"min":[10],"max":[10],"total":[6]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
-<pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiV2FybmluZzogbm8gZnVlIHBvc2libGUgYWJyaXIgZWwgYXJjaGl2byAnQzovVXNlcnMvVXN1YXJpby9Eb2N1bWVudHMvTUFSVEkvR2l0aHViL2lhLXVuY3V5by0yMDI0L3RwNy1pbnRyby1tbC9kYXRhL2FyYm9sYWRvLW1lbmRvemEtZGF0YXNldC12YWxpZGF0aW9uLmNzdic6IE5vIHN1Y2ggZmlsZSBvciBkaXJlY3RvcnlFcnJvciBpbiBmaWxlKGZpbGUsIFwicnRcIikgOiBubyBzZSBwdWVkZSBhYnJpciBsYSBjb25leGnDs25cbiJ9 -->
+<pre><code>Warning: no fue posible abrir el archivo &#39;C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-intro-ml/data/arbolado-mendoza-dataset-validation.csv&#39;: No such file or directoryError in file(file, &quot;rt&quot;) : no se puede abrir la conexión</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBDb252ZXJ0aXIgaW5jbGluYWNpb25fcGVsaWdyb3NhIGEgMCB5IDFcbmRmX3ZhbGlkYXRpb24kaW5jbGluYWNpb25fcGVsaWdyb3NhIDwtIGlmZWxzZShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAxLCAxLCAwKVxuXG4jIENhbGN1bGFyIGxvcyB2YWxvcmVzIGRlIGxhIG1hdHJpeiBkZSBjb25mdXNpw7NuXG50cnVlX3Bvc2l0aXZlIDwtIHN1bShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAxICYgZGZfdmFsaWRhdGlvbiRwcmVkaWN0aW9uX2NsYXNzID09IDEpXG50cnVlX25lZ2F0aXZlIDwtIHN1bShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAwICYgZGZfdmFsaWRhdGlvbiRwcmVkaWN0aW9uX2NsYXNzID09IDApXG5mYWxzZV9wb3NpdGl2ZSA8LSBzdW0oZGZfdmFsaWRhdGlvbiRpbmNsaW5hY2lvbl9wZWxpZ3Jvc2EgPT0gMCAmIGRmX3ZhbGlkYXRpb24kcHJlZGljdGlvbl9jbGFzcyA9PSAxKVxuZmFsc2VfbmVnYXRpdmUgPC0gc3VtKGRmX3ZhbGlkYXRpb24kaW5jbGluYWNpb25fcGVsaWdyb3NhID09IDEgJiBkZl92YWxpZGF0aW9uJHByZWRpY3Rpb25fY2xhc3MgPT0gMClcblxuIyBNb3N0cmFyIGxhIG1hdHJpeiBkZSBjb25mdXNpw7NuXG5jb25mdXNpb25fbWF0cml4IDwtIGRhdGEuZnJhbWUoXG4gIFwiVHJ1ZSBQb3NpdGl2ZVwiID0gdHJ1ZV9wb3NpdGl2ZSxcbiAgXCJUcnVlIE5lZ2F0aXZlXCIgPSB0cnVlX25lZ2F0aXZlLFxuICBcIkZhbHNlIFBvc2l0aXZlXCIgPSBmYWxzZV9wb3NpdGl2ZSxcbiAgXCJGYWxzZSBOZWdhdGl2ZVwiID0gZmFsc2VfbmVnYXRpdmVcbilcblxuY29uZnVzaW9uX21hdHJpeFxuYGBgIn0= -->
-<pre class="r"><code># Convertir inclinacion_peligrosa a 0 y 1
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuIyBDb252ZXJ0aXIgaW5jbGluYWNpb25fcGVsaWdyb3NhIGEgMCB5IDFcbmRmX3ZhbGlkYXRpb24kaW5jbGluYWNpb25fcGVsaWdyb3NhIDwtIGlmZWxzZShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAxLCAxLCAwKVxuXG4jIENhbGN1bGFyIGxvcyB2YWxvcmVzIGRlIGxhIG1hdHJpeiBkZSBjb25mdXNpw7NuXG50cnVlX3Bvc2l0aXZlIDwtIHN1bShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAxICYgZGZfdmFsaWRhdGlvbiRwcmVkaWN0aW9uX2NsYXNzID09IDEpXG50cnVlX25lZ2F0aXZlIDwtIHN1bShkZl92YWxpZGF0aW9uJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAwICYgZGZfdmFsaWRhdGlvbiRwcmVkaWN0aW9uX2NsYXNzID09IDApXG5mYWxzZV9wb3NpdGl2ZSA8LSBzdW0oZGZfdmFsaWRhdGlvbiRpbmNsaW5hY2lvbl9wZWxpZ3Jvc2EgPT0gMCAmIGRmX3ZhbGlkYXRpb24kcHJlZGljdGlvbl9jbGFzcyA9PSAxKVxuZmFsc2VfbmVnYXRpdmUgPC0gc3VtKGRmX3ZhbGlkYXRpb24kaW5jbGluYWNpb25fcGVsaWdyb3NhID09IDEgJiBkZl92YWxpZGF0aW9uJHByZWRpY3Rpb25fY2xhc3MgPT0gMClcblxuIyBNb3N0cmFyIGxhIG1hdHJpeiBkZSBjb25mdXNpw7NuXG5jb25mdXNpb25fbWF0cml4IDwtIGRhdGEuZnJhbWUoXG4gIFxcVHJ1ZSBQb3NpdGl2ZVxcID0gdHJ1ZV9wb3NpdGl2ZSxcbiAgXFxUcnVlIE5lZ2F0aXZlXFwgPSB0cnVlX25lZ2F0aXZlLFxuICBcXEZhbHNlIFBvc2l0aXZlXFwgPSBmYWxzZV9wb3NpdGl2ZSxcbiAgXFxGYWxzZSBOZWdhdGl2ZVxcID0gZmFsc2VfbmVnYXRpdmVcbilcblxuY29uZnVzaW9uX21hdHJpeFxuYGBgXG5gYGByXG5OQVxuYGBgXG5gYGAifQ== -->
+<pre class="r"><code>```r
+# Convertir inclinacion_peligrosa a 0 y 1
 df_validation$inclinacion_peligrosa &lt;- ifelse(df_validation$inclinacion_peligrosa == 1, 1, 0)
 
 # Calcular los valores de la matriz de confusión
@@ -1830,28 +1830,37 @@ false_negative &lt;- sum(df_validation$inclinacion_peligrosa == 1 &amp; df_valid
 
 # Mostrar la matriz de confusión
 confusion_matrix &lt;- data.frame(
-  &quot;True Positive&quot; = true_positive,
-  &quot;True Negative&quot; = true_negative,
-  &quot;False Positive&quot; = false_positive,
-  &quot;False Negative&quot; = false_negative
+  \True Positive\ = true_positive,
+  \True Negative\ = true_negative,
+  \False Positive\ = false_positive,
+  \False Negative\ = false_negative
 )
 
 confusion_matrix</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbImRhdGEuZnJhbWUiXSwibnJvdyI6MSwibmNvbCI6NCwic3VtbWFyeSI6eyJEZXNjcmlwdGlvbiI6WyJkZiBbMSDDlyA0XSJdfX0sInJkZiI6Ikg0c0lBQUFBQUFBQUJtVlEwVXJETUJTOWJkUEtpcE9CMzlIQzJJc2ZJSHNVa1FsNzhTRzJXUzJMU1VuUzZYZjR3ZFBidEZmV0xCQnljbkxQdlNmbjVYRy95ZmM1QUNUQWtnU1NGQ0drcjd0dDhRREFZcnhFd0dBeG5OOVlkSStBNFY3NmgzRk4rUGJ0QXYvTWEyYU5Vc1UvaFVXdzhzMUdjcmt6dlNpZnRXMWRleEl6OGtrMC9JSzgyM0pwcjBvbjlyOTJQbkpoOUZkSlk4bFhGUHFxSkxma2k4aTg1bzZYQjROYXZKMER5WTN1WEtzVml1SWhtU3dRUnlZZ1ZyMGFYTlJGOWRHclk3SGVCTzlKcDVwaDZIVzZmaE5tbzQzNGQ1Sm5rendUcW1rVlJaSksvaTRrZGE3RmlhTENNSHdXWldkYTVlaWp5TnJTYWNkSmtsZGFFdU8vRHVjL3pwQVE0UzhDQUFBPSJ9 -->
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["True.Positive"],"name":[1],"type":["int"],"align":["right"]},{"label":["True.Negative"],"name":[2],"type":["int"],"align":["right"]},{"label":["False.Positive"],"name":[3],"type":["int"],"align":["right"]},{"label":["False.Negative"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"3165","3":"3218","4":"0"}],"options":{"columns":{"min":{},"max":[10],"total":[4]},"rows":{"min":[10],"max":[10],"total":[1]},"pages":{}}}
-  </script>
-</div>
-<!-- rnb-frame-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuTkFcbmBgYCJ9 -->
 <pre class="r"><code>NA</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVBVTlRPIDUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG4jIEZ1bmNpw7NuIGJpZ2dlcmNsYXNzX2NsYXNzaWZpZXJcbmJpZ2dlcmNsYXNzX2NsYXNzaWZpZXIgPC0gZnVuY3Rpb24oZGYpIHtcbiAgIyBJZGVudGlmaWNhciBsYSBjbGFzZSBtYXlvcml0YXJpYVxuICBjbGFzc19tYWpvcml0eSA8LSBpZmVsc2UobWVhbihkZiRpbmNsaW5hY2lvbl9wZWxpZ3Jvc2EpID4gMC41LCAxLCAwKVxuICBcbiAgIyBBc2lnbmFyIGxhIGNsYXNlIG1heW9yaXRhcmlhIGVuIGxhIG51ZXZhIGNvbHVtbmEgcHJlZGljdGlvbl9jbGFzc1xuICBkZiA8LSBkZiAlPiUgbXV0YXRlKHByZWRpY3Rpb25fY2xhc3MgPSBjbGFzc19tYWpvcml0eSlcbiAgXG4gIHJldHVybihkZilcbn1cblxuYGBgIn0= -->
-<pre class="r"><code>#------------------------PUNTO 5--------------------------------
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjoiZGF0YS5mcmFtZSIsIm5yb3ciOjEsIm5jb2wiOjQsInN1bW1hcnkiOnsiRGVzY3JpcHRpb24iOiJkZiBbMSDDlyA0XSJ9fSwicmRmIjoiSDRzSUFBQUFBQUFBQm1WUTBVckRNQlM5YmRQS2lwT0IzOUhDMklzZklIc1VrUWw3OFNHMldTMkxTVW5TNlhmNHdkUGJ0RmZXTEJCeWNuTFB2U2ZuNVhHL3lmYzVBQ1RBa2dTU0ZDR2tyN3R0OFFEQVlyeEV3R0F4bk45WWRJK0E0Vjc2aDNGTitQYnRBdi9NYTJhTlVzVS9oVVd3OHMxR2Nya3p2U2lmdFcxZGV4SXo4a2swL0lLODIzSnByMG9uOXI5MlBuSmg5RmRKWThsWEZQcXFKTGZraThpODVvNlhCNE5hdkowRHlZM3VYS3NWaXVJaG1Td1FSeVlnVnIwYVhOUkY5ZEdyWTdIZUJPOUpwNXBoNkhXNmZoTm1vNDM0ZDVKbmt6d1RxbWtWUlpKSy9pNGtkYTdGaWFMQ01Id1daV2RhNWVpanlOclNhY2RKa2xkYUV1Ty9EdWMvenBBUTRTOENBQUE9In0= --&gt;
+
+&lt;div data-pagedtable=&quot;false&quot;&gt;
+  &lt;script data-pagedtable-source type=&quot;application/json&quot;&gt;
+{&quot;columns&quot;:[{&quot;label&quot;:[&quot;True.Positive&quot;],&quot;name&quot;:[1],&quot;type&quot;:[&quot;int&quot;],&quot;align&quot;:[&quot;right&quot;]},{&quot;label&quot;:[&quot;True.Negative&quot;],&quot;name&quot;:[2],&quot;type&quot;:[&quot;int&quot;],&quot;align&quot;:[&quot;right&quot;]},{&quot;label&quot;:[&quot;False.Positive&quot;],&quot;name&quot;:[3],&quot;type&quot;:[&quot;int&quot;],&quot;align&quot;:[&quot;right&quot;]},{&quot;label&quot;:[&quot;False.Negative&quot;],&quot;name&quot;:[4],&quot;type&quot;:[&quot;int&quot;],&quot;align&quot;:[&quot;right&quot;]}],&quot;data&quot;:[{&quot;1&quot;:&quot;0&quot;,&quot;2&quot;:&quot;3165&quot;,&quot;3&quot;:&quot;3218&quot;,&quot;4&quot;:&quot;0&quot;}],&quot;options&quot;:{&quot;columns&quot;:{&quot;min&quot;:{},&quot;max&quot;:[10],&quot;total&quot;:[4]},&quot;rows&quot;:{&quot;min&quot;:[10],&quot;max&quot;:[10],&quot;total&quot;:[1]},&quot;pages&quot;:{}}}
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;!-- rnb-frame-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVBVTlRPIDUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuXG4jIEZ1bmNpw7NuIGJpZ2dlcmNsYXNzX2NsYXNzaWZpZXJcbmJpZ2dlcmNsYXNzX2NsYXNzaWZpZXIgPC0gZnVuY3Rpb24oZGYpIHtcbiAgIyBJZGVudGlmaWNhciBsYSBjbGFzZSBtYXlvcml0YXJpYVxuICBjbGFzc19tYWpvcml0eSA8LSBpZmVsc2UobWVhbihkZiRpbmNsaW5hY2lvbl9wZWxpZ3Jvc2EpID4gMC41LCAxLCAwKVxuICBcbiAgIyBBc2lnbmFyIGxhIGNsYXNlIG1heW9yaXRhcmlhIGVuIGxhIG51ZXZhIGNvbHVtbmEgcHJlZGljdGlvbl9jbGFzc1xuICBkZiA8LSBkZiAlPiUgbXV0YXRlKHByZWRpY3Rpb25fY2xhc3MgPSBjbGFzc19tYWpvcml0eSlcbiAgXG4gIHJldHVybihkZilcbn1cblxuYGBgIn0= --&gt;
+
+```r
+#------------------------PUNTO 5--------------------------------
 
 # Función biggerclass_classifier
 biggerclass_classifier &lt;- function(df) {
@@ -1867,27 +1876,13 @@ biggerclass_classifier &lt;- function(df) {
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBcGxpY2FyIGVsIGNsYXNpZmljYWRvciBwb3IgY2xhc2UgbWF5b3JpdGFyaWFcbmRmX3ZhbGlkYXRpb25fYmlnZ2VyY2xhc3MgPC0gYmlnZ2VyY2xhc3NfY2xhc3NpZmllcihkZl92YWxpZGF0aW9uKVxuXG4jIENhbGN1bGFyIGxhIG1hdHJpeiBkZSBjb25mdXNpw7NuIHBhcmEgYmlnZ2VyY2xhc3NfY2xhc3NpZmllclxudHJ1ZV9wb3NpdGl2ZV9iaWdnZXIgPC0gc3VtKGRmX3ZhbGlkYXRpb25fYmlnZ2VyY2xhc3MkaW5jbGluYWNpb25fcGVsaWdyb3NhID09IDEgJiBkZl92YWxpZGF0aW9uX2JpZ2dlcmNsYXNzJHByZWRpY3Rpb25fY2xhc3MgPT0gMSlcbnRydWVfbmVnYXRpdmVfYmlnZ2VyIDwtIHN1bShkZl92YWxpZGF0aW9uX2JpZ2dlcmNsYXNzJGluY2xpbmFjaW9uX3BlbGlncm9zYSA9PSAwICYgZGZfdmFsaWRhdGlvbl9iaWdnZXJjbGFzcyRwcmVkaWN0aW9uX2NsYXNzID09IDApXG5mYWxzZV9wb3NpdGl2ZV9iaWdnZXIgPC0gc3VtKGRmX3ZhbGlkYXRpb25fYmlnZ2VyY2xhc3MkaW5jbGluYWNpb25fcGVsaWdyb3NhID09IDAgJiBkZl92YWxpZGF0aW9uX2JpZ2dlcmNsYXNzJHByZWRpY3Rpb25fY2xhc3MgPT0gMSlcbmZhbHNlX25lZ2F0aXZlX2JpZ2dlciA8LSBzdW0oZGZfdmFsaWRhdGlvbl9iaWdnZXJjbGFzcyRpbmNsaW5hY2lvbl9wZWxpZ3Jvc2EgPT0gMSAmIGRmX3ZhbGlkYXRpb25fYmlnZ2VyY2xhc3MkcHJlZGljdGlvbl9jbGFzcyA9PSAwKVxuXG4jIE1vc3RyYXIgbGEgbWF0cml6IGRlIGNvbmZ1c2nDs25cbmNvbmZ1c2lvbl9tYXRyaXhfYmlnZ2VyY2xhc3MgPC0gZGF0YS5mcmFtZShcbiAgXCJUcnVlIFBvc2l0aXZlXCIgPSB0cnVlX3Bvc2l0aXZlX2JpZ2dlcixcbiAgXCJUcnVlIE5lZ2F0aXZlXCIgPSB0cnVlX25lZ2F0aXZlX2JpZ2dlcixcbiAgXCJGYWxzZSBQb3NpdGl2ZVwiID0gZmFsc2VfcG9zaXRpdmVfYmlnZ2VyLFxuICBcIkZhbHNlIE5lZ2F0aXZlXCIgPSBmYWxzZV9uZWdhdGl2ZV9iaWdnZXJcbilcblxuY29uZnVzaW9uX21hdHJpeF9iaWdnZXJjbGFzc1xuXG5gYGAifQ== -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBBcGxpY2FyIGVsIGNsYXNpZmljYWRvciBwb3IgY2xhc2UgbWF5b3JpdGFyaWFcbmRmX3ZhbGlkYXRpb25fYmlnZ2VyY2xhc3MgPC0gYmlnZ2VyY2xhc3NfY2xhc3NpZmllcihkZl92YWxpZGF0aW9uKVxuYGBgIn0= -->
 <pre class="r"><code># Aplicar el clasificador por clase mayoritaria
-df_validation_biggerclass &lt;- biggerclass_classifier(df_validation)
-
-# Calcular la matriz de confusión para biggerclass_classifier
-true_positive_bigger &lt;- sum(df_validation_biggerclass$inclinacion_peligrosa == 1 &amp; df_validation_biggerclass$prediction_class == 1)
-true_negative_bigger &lt;- sum(df_validation_biggerclass$inclinacion_peligrosa == 0 &amp; df_validation_biggerclass$prediction_class == 0)
-false_positive_bigger &lt;- sum(df_validation_biggerclass$inclinacion_peligrosa == 0 &amp; df_validation_biggerclass$prediction_class == 1)
-false_negative_bigger &lt;- sum(df_validation_biggerclass$inclinacion_peligrosa == 1 &amp; df_validation_biggerclass$prediction_class == 0)
-
-# Mostrar la matriz de confusión
-confusion_matrix_biggerclass &lt;- data.frame(
-  &quot;True Positive&quot; = true_positive_bigger,
-  &quot;True Negative&quot; = true_negative_bigger,
-  &quot;False Positive&quot; = false_positive_bigger,
-  &quot;False Negative&quot; = false_negative_bigger
-)
-
-confusion_matrix_biggerclass
-</code></pre>
+df_validation_biggerclass &lt;- biggerclass_classifier(df_validation)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IG9iamV0byAnZGZfdmFsaWRhdGlvbicgbm8gZW5jb250cmFkb1xuIn0= -->
+<pre><code>Error: objeto &#39;df_validation&#39; no encontrado</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIy0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVBVTlRPIDYtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLVxuIyBGdW5jaW9uZXMgcGFyYSBjYWxjdWxhciBtw6l0cmljYXNcbmNhbGN1bGF0ZV9hY2N1cmFjeSA8LSBmdW5jdGlvbih0cCwgdG4sIGZwLCBmbikge1xuICByZXR1cm4oKHRwICsgdG4pIC8gKHRwICsgdG4gKyBmcCArIGZuKSlcbn1cblxuY2FsY3VsYXRlX3ByZWNpc2lvbiA8LSBmdW5jdGlvbih0cCwgZnApIHtcbiAgcmV0dXJuKHRwIC8gKHRwICsgZnApKVxufVxuXG5jYWxjdWxhdGVfc2Vuc2l0aXZpdHkgPC0gZnVuY3Rpb24odHAsIGZuKSB7XG4gIHJldHVybih0cCAvICh0cCArIGZuKSlcbn1cblxuY2FsY3VsYXRlX3NwZWNpZmljaXR5IDwtIGZ1bmN0aW9uKHRuLCBmcCkge1xuICByZXR1cm4odG4gLyAodG4gKyBmcCkpXG59XG5cbmBgYCJ9 -->
@@ -1912,38 +1907,20 @@ calculate_specificity &lt;- function(tn, fp) {
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNjdXJhY3lfcmFuZG9tIDwtIGNhbGN1bGF0ZV9hY2N1cmFjeSh0cnVlX3Bvc2l0aXZlLCB0cnVlX25lZ2F0aXZlLCBmYWxzZV9wb3NpdGl2ZSwgZmFsc2VfbmVnYXRpdmUpXG5wcmVjaXNpb25fcmFuZG9tIDwtIGNhbGN1bGF0ZV9wcmVjaXNpb24odHJ1ZV9wb3NpdGl2ZSwgZmFsc2VfcG9zaXRpdmUpXG5zZW5zaXRpdml0eV9yYW5kb20gPC0gY2FsY3VsYXRlX3NlbnNpdGl2aXR5KHRydWVfcG9zaXRpdmUsIGZhbHNlX25lZ2F0aXZlKVxuc3BlY2lmaWNpdHlfcmFuZG9tIDwtIGNhbGN1bGF0ZV9zcGVjaWZpY2l0eSh0cnVlX25lZ2F0aXZlLCBmYWxzZV9wb3NpdGl2ZSlcblxuIyBNb3N0cmFyIGxhcyBtw6l0cmljYXMgZGVsIGNsYXNpZmljYWRvciBhbGVhdG9yaW9cbmRhdGEuZnJhbWUoXG4gIFwiQWNjdXJhY3lcIiA9IGFjY3VyYWN5X3JhbmRvbSxcbiAgXCJQcmVjaXNpb25cIiA9IHByZWNpc2lvbl9yYW5kb20sXG4gIFwiU2Vuc2l0aXZpdHlcIiA9IHNlbnNpdGl2aXR5X3JhbmRvbSxcbiAgXCJTcGVjaWZpY2l0eVwiID0gc3BlY2lmaWNpdHlfcmFuZG9tXG4pXG5cbmBgYCJ9 -->
-<pre class="r"><code>accuracy_random &lt;- calculate_accuracy(true_positive, true_negative, false_positive, false_negative)
-precision_random &lt;- calculate_precision(true_positive, false_positive)
-sensitivity_random &lt;- calculate_sensitivity(true_positive, false_negative)
-specificity_random &lt;- calculate_specificity(true_negative, false_positive)
-
-# Mostrar las métricas del clasificador aleatorio
-data.frame(
-  &quot;Accuracy&quot; = accuracy_random,
-  &quot;Precision&quot; = precision_random,
-  &quot;Sensitivity&quot; = sensitivity_random,
-  &quot;Specificity&quot; = specificity_random
-)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNjdXJhY3lfcmFuZG9tIDwtIGNhbGN1bGF0ZV9hY2N1cmFjeSh0cnVlX3Bvc2l0aXZlLCB0cnVlX25lZ2F0aXZlLCBmYWxzZV9wb3NpdGl2ZSwgZmFsc2VfbmVnYXRpdmUpXG5gYGAifQ== -->
+<pre class="r"><code>accuracy_random &lt;- calculate_accuracy(true_positive, true_negative, false_positive, false_negative)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IG9iamV0byAndHJ1ZV9wb3NpdGl2ZScgbm8gZW5jb250cmFkb1xuIn0= -->
+<pre><code>Error: objeto &#39;true_positive&#39; no encontrado</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNjdXJhY3lfYmlnZ2VyY2xhc3MgPC0gY2FsY3VsYXRlX2FjY3VyYWN5KHRydWVfcG9zaXRpdmVfYmlnZ2VyLCB0cnVlX25lZ2F0aXZlX2JpZ2dlciwgZmFsc2VfcG9zaXRpdmVfYmlnZ2VyLCBmYWxzZV9uZWdhdGl2ZV9iaWdnZXIpXG5wcmVjaXNpb25fYmlnZ2VyY2xhc3MgPC0gY2FsY3VsYXRlX3ByZWNpc2lvbih0cnVlX3Bvc2l0aXZlX2JpZ2dlciwgZmFsc2VfcG9zaXRpdmVfYmlnZ2VyKVxuc2Vuc2l0aXZpdHlfYmlnZ2VyY2xhc3MgPC0gY2FsY3VsYXRlX3NlbnNpdGl2aXR5KHRydWVfcG9zaXRpdmVfYmlnZ2VyLCBmYWxzZV9uZWdhdGl2ZV9iaWdnZXIpXG5zcGVjaWZpY2l0eV9iaWdnZXJjbGFzcyA8LSBjYWxjdWxhdGVfc3BlY2lmaWNpdHkodHJ1ZV9uZWdhdGl2ZV9iaWdnZXIsIGZhbHNlX3Bvc2l0aXZlX2JpZ2dlcilcblxuIyBNb3N0cmFyIGxhcyBtw6l0cmljYXMgZGVsIGNsYXNpZmljYWRvciBwb3IgY2xhc2UgbWF5b3JpdGFyaWFcbmRhdGEuZnJhbWUoXG4gIFwiQWNjdXJhY3lcIiA9IGFjY3VyYWN5X2JpZ2dlcmNsYXNzLFxuICBcIlByZWNpc2lvblwiID0gcHJlY2lzaW9uX2JpZ2dlcmNsYXNzLFxuICBcIlNlbnNpdGl2aXR5XCIgPSBzZW5zaXRpdml0eV9iaWdnZXJjbGFzcyxcbiAgXCJTcGVjaWZpY2l0eVwiID0gc3BlY2lmaWNpdHlfYmlnZ2VyY2xhc3NcbilcblxuYGBgIn0= -->
-<pre class="r"><code>accuracy_biggerclass &lt;- calculate_accuracy(true_positive_bigger, true_negative_bigger, false_positive_bigger, false_negative_bigger)
-precision_biggerclass &lt;- calculate_precision(true_positive_bigger, false_positive_bigger)
-sensitivity_biggerclass &lt;- calculate_sensitivity(true_positive_bigger, false_negative_bigger)
-specificity_biggerclass &lt;- calculate_specificity(true_negative_bigger, false_positive_bigger)
-
-# Mostrar las métricas del clasificador por clase mayoritaria
-data.frame(
-  &quot;Accuracy&quot; = accuracy_biggerclass,
-  &quot;Precision&quot; = precision_biggerclass,
-  &quot;Sensitivity&quot; = sensitivity_biggerclass,
-  &quot;Specificity&quot; = specificity_biggerclass
-)
-</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYWNjdXJhY3lfYmlnZ2VyY2xhc3MgPC0gY2FsY3VsYXRlX2FjY3VyYWN5KHRydWVfcG9zaXRpdmVfYmlnZ2VyLCB0cnVlX25lZ2F0aXZlX2JpZ2dlciwgZmFsc2VfcG9zaXRpdmVfYmlnZ2VyLCBmYWxzZV9uZWdhdGl2ZV9iaWdnZXIpXG5gYGAifQ== -->
+<pre class="r"><code>accuracy_biggerclass &lt;- calculate_accuracy(true_positive_bigger, true_negative_bigger, false_positive_bigger, false_negative_bigger)</code></pre>
 <!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiRXJyb3I6IG9iamV0byAndHJ1ZV9wb3NpdGl2ZV9iaWdnZXInIG5vIGVuY29udHJhZG9cbiJ9 -->
+<pre><code>Error: objeto &#39;true_positive_bigger&#39; no encontrado</code></pre>
+<!-- rnb-output-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>Add a new chunk by clicking the <em>Insert Chunk</em> button on the
