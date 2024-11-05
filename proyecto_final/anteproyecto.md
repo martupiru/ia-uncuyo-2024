@@ -3,15 +3,16 @@
 ## Algoritmo evolutivo para la asignación de horarios y escuelas
 ### Código: CLASSMATCH 
 ### Integrantes: Laricchia Aida(13251) y Nahman Martina(13685)
-    ![robots](url)
-    ![legos](url)
+![robots](https://github.com/martupiru/ia-uncuyo-2024/blob/main/proyecto_final/images/robots.jpg)
+![legos](https://github.com/martupiru/ia-uncuyo-2024/blob/main/proyecto_final/images/legos.jpg)
+
 ### Descripción: 
 
 Este proyecto propone el desarrollo de un algoritmo evolutivo para la asignación de horarios y ubicaciones de trabajo de profesores en una red de escuelas o talleres. El **objetivo principal** es optimizar el proceso de asignación de manera que se minimicen las distancias de traslado y se ajusten los horarios a la disponibilidad de los docentes, tomando en cuenta su nivel de experiencia. En particular, se define que los profesores “junior” no pueden impartir clases solos, por lo que deben ser asignados en conjunto con un profesor “senior”, mientras que los “senior” pueden trabajar de manera independiente. Además, el algoritmo debe cumplir con una distribución justa y eficiente en función de la experiencia, horarios disponibles y ubicación de residencia de los profesores.
 
 Para la implementación, se investigará el uso de la librería DEAP (Distributed Evolutionary Algorithms in Python), una herramienta flexible y de código abierto que facilita el diseño y prueba de algoritmos evolutivos. DEAP permitirá estructurar y personalizar la solución, así como aplicar operadores genéticos que optimicen los resultados en este contexto.
 
-    ![curso](url)
+![curso](https://github.com/martupiru/ia-uncuyo-2024/blob/main/proyecto_final/images/curso.jpeg)
 #### Objetivos
 * Optimización de horarios asignados a cada profesor para minimizar conflictos de disponibilidad respecto a sus horarios y a los diversos horarios de las escuelas/talleres.
 * Reducción de las distancias entre la ubicación de los docentes y las escuelas asignadas para reducir los tiempos de traslado.
@@ -92,7 +93,7 @@ La naturaleza multiobjetivo del problema (minimizar distancias y maximizar adecu
 *Duración:* 3 días
 
 ### Cronograma estimado de actividades
-    ![CRONOGRAMA](url)
+![CRONOGRAMA](https://github.com/martupiru/ia-uncuyo-2024/blob/main/proyecto_final/images/CRONOGRAMA.png)
 
 
 
