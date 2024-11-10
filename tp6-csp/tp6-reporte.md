@@ -66,3 +66,23 @@ Un CSP tiene n-consistencia cuando, para cada subconjunto de variables de tamañ
 Dado que los árboles no contienen ciclos, no hay conflictos que puedan requerir la reconsideración de las asignaciones previas. Por lo tanto, la 2-consistencia es suficiente para garantizar la n-consistencia.
 * **b) Argumentar por qué lo demostrado en 5a es suficiente.**
 Ya que cada subconjunto de variables puede extenderse a una asignación consistente para la siguiente variable en el árbol (por su estructura), y dado que el árbol se puede recorrer sin necesidad de retroceder, la 2-consistencia es suficiente para asegurar que se pueden satisfacer todas las restricciones sin necesidad de verificar subconjuntos más grandes.
+### 6.  Implementar una solución al problema de las N−reinas utilizando una formulación CSP
+A continuación se presentan dos gráficos para poder representar en términos de estados y tiempo las distintas ejecuciones. 
+#### Gráfico 1: 
+    ![STATES](https:// "title")
+En el gráfico 1 se puede visualizar la cantidad de estados explorados para un N=15. Vemos que la cantidad para ambos algoritmos es de 105 aprox. 
+
+#### Gráfico 2: 
+    ![TIME](https:// "title")
+    
+En el gráfico 2 se puede visualizar el tiempo empleado por los algoritmos en la ejecución del problema para un N=15 también.
+
+Vemos que Forward Cheking es notablemente más veloz respecto al Backtracking para este N. 
+
+### 7. Comparativa tp5
+
+Las comparaciones se hicieron respecto a un N=15 para todos los algoritmos: Simulated Annealing,  Hill Climbing, algoritmo genético, backtracking CSP y forward checking.
+
+Backtracking y forward checking,  al ser algoritmos de búsqueda exhaustiva, son mucho más eficientes en la exploración del espacio de búsqueda que los algoritmos heurísticos. Los algoritmos heurísticos exploran un espacio mucho más amplio, buscando una solución "buena" en lugar de óptima, lo que puede resultar en la evaluación de muchos estados no prometedores.
+
+ Las gráficas revelan que backtracking y forward checking tienen tiempos de ejecución significativamente menores que los algoritmos heurísticos. Al igual que con los estados evaluados, la diferencia en la escala de las gráficas es enorme, lo que indica un mejor desempeño para backtracking y forward checking
