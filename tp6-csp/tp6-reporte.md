@@ -69,11 +69,11 @@ Ya que cada subconjunto de variables puede extenderse a una asignación consiste
 ### 6.  Implementar una solución al problema de las N−reinas utilizando una formulación CSP
 A continuación se presentan dos gráficos para poder representar en términos de estados y tiempo las distintas ejecuciones. 
 #### Gráfico 1: 
-    ![STATES](https:// "title")
+![STATES]([https:// "title"](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp6-csp/images/states/boxplot_estados_N15.png))
 En el gráfico 1 se puede visualizar la cantidad de estados explorados para un N=15. Vemos que la cantidad para ambos algoritmos es de 105 aprox. 
 
 #### Gráfico 2: 
-    ![TIME](https:// "title")
+![TIME]([https:// "title"](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp6-csp/images/time/boxplot_tiempo_N15.png))
     
 En el gráfico 2 se puede visualizar el tiempo empleado por los algoritmos en la ejecución del problema para un N=15 también.
 
