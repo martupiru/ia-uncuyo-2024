@@ -46,7 +46,7 @@ El modelo de Random Forest fue entrenado utilizando 3,900 árboles (ntree = 3900
 
 ### Resultados obtenidos en kaggel 
 
-    ![RESULTADOS](url)
+![RESULTADOS](https://github.com/martupiru/ia-uncuyo-2024/blob/main/tp7-ml/images/results_PartB.png)
     
 ### Descripción Detallada del algoritmo propuesto
 
