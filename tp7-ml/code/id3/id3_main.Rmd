@@ -1,0 +1,151 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+#árbol de decisión de acuerdo al pseudo-código provisto en AIMA
+
+```{r}
+# Cargar la librería dplyr
+suppressMessages(library(dplyr))
+
+# Cargar los datos
+tennis_data <- read.csv("C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-ml/code/id3/tennis.csv")
+print(tennis_data)
+
+```
+
+```{r}
+# Función para calcular la entropía
+calcular_entropia <- function(datos, columna_objetivo) {
+  # Calcular las probabilidades de cada clase en la columna objetivo
+  tabla_probabilidades <- prop.table(table(datos[[columna_objetivo]]))
+  
+  # Calcular la entropía usando las probabilidades
+  entropia <- -sum(tabla_probabilidades * log2(tabla_probabilidades + 1e-9)) # Evita log(0)
+  return(entropia)
+}
+
+
+```
+
+```{r}
+# Función para calcular la ganancia de información
+calcular_ganancia_informacion <- function(datos, atributo, columna_objetivo) {
+  # Calcular la entropía total del conjunto de datos
+  entropia_total <- calcular_entropia(datos, columna_objetivo)
+  
+  # Dividir los datos por los valores del atributo
+  valores <- unique(datos[[atributo]])
+  entropia_ponderada <- 0
+  
+  for (valor in valores) {
+    # Subconjunto de datos para cada valor del atributo
+    datos_subset <- subset(datos, datos[[atributo]] == valor)
+    
+    # Calcular la probabilidad de ese valor del atributo
+    probabilidad <- nrow(datos_subset) / nrow(datos)
+    
+    # Calcular la entropía para este subconjunto
+    entropia_ponderada <- entropia_ponderada + probabilidad * calcular_entropia(datos_subset, columna_objetivo)
+  }
+  
+  # Retornar la ganancia de información
+  ganancia <- entropia_total - entropia_ponderada
+  return(ganancia)
+}
+
+
+```
+
+```{r}
+# Función principal ID3 para generar el árbol de decisión
+generar_arbol_decision <- function(datos, columna_objetivo, atributos) {
+  if (nrow(datos) == 0) {
+    return("No hay datos")
+  }
+  
+  # Si todas las instancias tienen la misma clase
+  clases_unicas <- unique(datos[[columna_objetivo]])
+  if (length(clases_unicas) == 1) {
+    return(clases_unicas[1])
+  }
+  
+  # Si no quedan atributos, devuelve la clase más común
+  if (length(atributos) == 0) {
+    return(names(sort(table(datos[[columna_objetivo]]), decreasing = TRUE))[1])
+  }
+  
+  # Elegir el mejor atributo
+  mejor_atributo <- atributos[which.max(sapply(atributos, function(atributo) {
+    calcular_ganancia_informacion(datos, atributo, columna_objetivo)
+  }))]
+
+  # Crear el nodo con el mejor atributo
+  arbol <- list()
+  arbol[[mejor_atributo]] <- list()
+
+  # Construir el árbol recursivamente
+  for (valor in unique(datos[[mejor_atributo]])) {
+    datos_subset <- subset(datos, datos[[mejor_atributo]] == valor)
+    subarbol <- generar_arbol_decision(datos_subset, columna_objetivo, setdiff(atributos, mejor_atributo))
+    arbol[[mejor_atributo]][[as.character(valor)]] <- subarbol
+  }
+  
+  return(arbol)
+}
+
+
+```
+
+```{r}
+# Variables para la ejecución
+columna_objetivo <- "PlayTennis"
+atributos <- setdiff(names(tennis_data), columna_objetivo)
+
+# Generar el árbol de decisión
+arbol_decision <- generar_arbol_decision(tennis_data, columna_objetivo, atributos)
+print(arbol_decision)
+
+```
+```{r}
+# Definir la columna objetivo y los atributos
+columna_objetivo <- "play"
+atributos <- setdiff(names(tennis_data), columna_objetivo)
+
+# Calcular la ganancia de información para cada atributo
+atributos_ganancia <- sapply(atributos, function(atributo) {
+  calcular_ganancia_informacion(tennis_data, atributo, columna_objetivo)
+})
+
+# Crear una tabla con los resultados
+tabla_ganancia <- data.frame(
+  Atributo = atributos,
+  `Ganancia de Información` = atributos_ganancia
+)
+
+# Mostrar la tabla
+print(tabla_ganancia)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.

@@ -38,7 +38,8 @@ random_classifier <- function(df) {
 ```
 ```{r}
 # Cargar el archivo arbolado-mendoza-dataset-validation.csv
-df_validation <- read.csv("C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-intro-ml/data/arbolado-mendoza-dataset-validation.csv")
+df_validation <- read.csv("C:/Users/Usuario/Documents/MARTI/Github/ia-uncuyo-2024/tp7-ml/data/arbolado-mendoza-dataset-validation.csv")
+
 
 # Aplicar el clasificador aleatorio
 df_validation <- random_classifier(df_validation)
@@ -155,13 +156,92 @@ data.frame(
 
 ```
 
+```{r}
+#------------------------PUNTO 7--------------------------------
+
+#A. Create folds
+create_folds <- function(df, k) {
+  set.seed(42)  #semilla
+  n <- nrow(df)
+  folds <- sample(rep(1:k, length.out = n))  #crea un vector de indices aleatorios de 1 a k
+
+  #divide los indices en una lista de k elementos
+  fold_list <- split(1:n, folds)
+  
+  names(fold_list) <- paste0("Fold", 1:k)  #nombrar cada fold como Fold1, Fold2, etc.
+  return(fold_list)
+}
+
+#prueba
+folds <- create_folds(df_validation, 5)  #crear 5 folds
+print(folds)
+
+```
 
 
+```{r}
+#B. cross-validation
+#instalar y cargar paquete necesario
+if(!require(rpart)) install.packages("rpart")
+library(rpart)
 
+#funcion para realizar la validacion cruzada
+cross_validation <- function(df, k) {
+  folds <- create_folds(df, k)
+  
+  #variables para almacenar metricas en cada fold
+  accuracy_list <- c()
+  precision_list <- c()
+  sensitivity_list <- c()
+  specificity_list <- c()
+  
+  for (i in 1:k) {
+    #separar en datos de entrenamiento y prueba
+    test_idx <- folds[[paste0("Fold", i)]]
+    test_data <- df[test_idx, ]
+    train_data <- df[-test_idx, ]
+    
+ #ajustar niveles para los factores en test_data
+    test_data$ultima_modificacion <- factor(test_data$ultima_modificacion, levels = levels(train_data$ultima_modificacion))
+    test_data$especie <- factor(test_data$especie, levels = levels(train_data$especie))  #ajustar niveles de 'especie'
+    
+    #entrenar el modelo de arboil de decision
+    model <- rpart(inclinacion_peligrosa ~ ., data = train_data, method = "class")
+    
+    #realizar predicciones
+    predictions <- predict(model, test_data, type = "class")
+    test_data$prediction_class <- as.integer(predictions)  #agregar predicciones
+    
+    #calcular valores de la matriz de confusion
+    tp <- sum(test_data$inclinacion_peligrosa == 1 & test_data$prediction_class == 1)
+    tn <- sum(test_data$inclinacion_peligrosa == 0 & test_data$prediction_class == 0)
+    fp <- sum(test_data$inclinacion_peligrosa == 0 & test_data$prediction_class == 1)
+    fn <- sum(test_data$inclinacion_peligrosa == 1 & test_data$prediction_class == 0)
+    
+    #calcular metricas y guardar
+    accuracy_list <- c(accuracy_list, calculate_accuracy(tp, tn, fp, fn))
+    precision_list <- c(precision_list, calculate_precision(tp, fp))
+    sensitivity_list <- c(sensitivity_list, calculate_sensitivity(tp, fn))
+    specificity_list <- c(specificity_list, calculate_specificity(tn, fp))
+  }
+  
+  #calcular media y desv estandar para cada metrica
+  results <- data.frame(
+    "Metric" = c("Accuracy", "Precision", "Sensitivity", "Specificity"),
+    "Mean" = c(mean(accuracy_list), mean(precision_list), mean(sensitivity_list), mean(specificity_list)),
+    "Std_Dev" = c(sd(accuracy_list), sd(precision_list), sd(sensitivity_list), sd(specificity_list))
+  )
+  
+  return(results)
+}
 
+#ejemplo
+cross_validation_results <- cross_validation(df_validation, 5)
+print(cross_validation_results)
 
+```
 
-
+-------------------------------------------------------------------------------
 
 Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
 
