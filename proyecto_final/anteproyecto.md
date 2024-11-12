@@ -46,9 +46,9 @@ La evaluación del algoritmo se llevará a cabo mediante la comparación entre e
 
 * DEAP. (n.d.). DEAP - Distributed Evolutionary Algorithms in Python [GitHub repository]. GitHub. Retrieved from https://github.com/DEAP/deap (2)
 
-* Forcén, M. (2018). Selección y evaluación de estrategias en inteligencia artificial para la asignación de recursos docentes en instituciones educativas [Tesis de maestría, Universidad Nacional de La Plata]. CONICET Digital. https://ri.conicet.gov.ar/handle/11336/134016 (3)
+*  Entre Ciencia e Ingeniería (2020). Algoritmos Evolutivos Multiobjetivo aplicados a la Selección de Características en Microarrays de Datos de Cáncer [Artículo]. CONICET Digital. https://ri.conicet.gov.ar/handle/11336/134016 (3)
 
-* Forcén, M., & Forcén, M. (2017). Análisis de técnicas de optimización para la asignación de horarios en entornos educativos [Artículo]. CONICET Digital. https://ri.conicet.gov.ar/handle/11336/67471 (4)
+* Revista de Ingeniería Industrial (2012). Técnicas evolutivas en problemas multi-objetivos en el proceso de planificación de la producción [Artículo]. CONICET Digital. https://ri.conicet.gov.ar/handle/11336/67471 (4)
 
 
 ### Justificación
